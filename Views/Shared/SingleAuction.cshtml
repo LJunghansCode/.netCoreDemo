@@ -1,0 +1,16 @@
+<h3> @ViewBag.Auction.Product </h3>
+<h3> Make a Bid on <u>@ViewBag.Auction.Product</u> Posted By <u>@ViewBag.Auction.Author</u></h3>
+<u>@ViewBag.Auction.Product</u> has @ViewBag.Auction.TimeAgo remaining
+<h4>Current highest Bid is <u>@ViewBag.Auction.HighestBid</u> Made by <u>@ViewBag.Auction.BidId</u></h4>
+@ViewData["Error"]
+<form action="/Bid" method="post">
+    <input type="hidden" value="@ViewBag.Auction.Id" name="auctId">
+    <label for="bidAmount">Your new Bid</label>
+    <input type="number" value="@ViewBag.Auction.HighestBid" name="bidAmount">
+    <input type="submit" value="bid">
+</form>
+<!--<form action="/EndAuction" method="post">
+    <input type="hidden" value="@ViewBag.Auction.Id" name="auctId">
+    <input type="submit" value="End Early">
+</form>-->
+<a href="/Main">Back to all auctions</a>

@@ -1,0 +1,41 @@
+<h1>  New Auction  </h1>
+@{
+    ViewData["Title"] = "Home Page";
+}
+<a href="/Main">Back to all auctions</a> | <a href="/Logout">Logout</a>
+@model blackBelt.Models.AuctionViewModel
+@ViewData["Error"]
+<form asp-controller="Main" asp-action="NewAuction" method="post" role="form">
+<div asp-validation-summary="All"></div>
+<div class="row">
+    <div class="seven columns">  
+   <label for="Product">Product to be sold: </label>
+         <input class="u-full-width" asp-for="Product"/>
+    </div>
+</div>
+    <div class="row">
+        <div class="seven columns">  
+            <label for="Title">Description: </label>
+                <input class="u-full-width" asp-for="Description"/>
+     </div> 
+    </div>
+    <div class="row">
+        <div class="seven columns">  
+            <label for="Title">Starting bid: </label>
+                <input class="u-full-width" asp-for="HighestBid"/>
+     </div> 
+    </div>  
+    <div class="row">
+    <div class="seven columns">  
+            <label for="Title">End Date: </label>
+                <input type="date" class="u-full-width" asp-for="EndDate"/>
+     </div> 
+    </div> 
+    <div class="row">
+    <div class="seven columns">  
+            <label for="Title">Submit</label>
+                <input type="hidden" class="u-full-width" value="@ViewBag.userFirstName" asp-for="Author"/>
+     </div> 
+    </div> 
+ <input type="submit" value="New Auction"/>
+</form>

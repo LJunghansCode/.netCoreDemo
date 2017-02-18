@@ -1,0 +1,38 @@
+@{
+    ViewData["Title"] = "Home Page";
+}
+<a href="/Logout">Logout</a>
+<h1>Welcome to Auction House, @ViewBag.userFirstName</h1>
+<h3>  All auctions -- By Time Remaining </h3>
+<table>
+    <tr> 
+    <th>Product</th>
+    <th>Seller</th>
+    <th>Top Bid</th>
+    <th>Time Remaining</th>
+    <th>Remove</th> </tr>
+    <tbody>
+@{
+    foreach(var auction in @ViewBag.AllAuctions){
+        if(auction.EndDate > ViewBag.Now){
+       <tr> <td><a href="/Auction/@auction.Id">@auction.Product</a></td>
+            <td>@auction.Author</td>
+            <td>@auction.HighestBid</td>
+            <td>@auction.TimeAgo</td>
+            <td>@if(auction.Author == @ViewBag.userFirstName ){
+                <form action="/Delete" method="post">
+                    <input type="hidden" value="@auction.Id" name="auctId">
+                    <input type="submit" value="delete">
+                </form>
+                }</td>
+            </tr>
+        }
+    }
+}
+</tbody>
+</table>
+<h3>Your Wallet: @ViewBag.Wallet.00$</h3>
+<a href="/New"> <button> New Auction</button> </a>
+
+
+
